@@ -31,4 +31,6 @@ class CityAdapter(
         return list.size
     }
 
+
+
 }

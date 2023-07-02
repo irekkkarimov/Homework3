@@ -10,7 +10,7 @@ import com.itis.homework3.databinding.FragmentListBinding
 
 class ListFragment : Fragment(R.layout.fragment_list) {
 
-    var binding : FragmentListBinding? = null
+    private var binding : FragmentListBinding? = null
     private var adapter: CityAdapter? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
