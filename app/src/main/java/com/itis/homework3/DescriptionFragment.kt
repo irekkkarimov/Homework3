@@ -1,10 +1,12 @@
 package com.itis.homework3
 
+import android.app.Activity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.appcompat.app.ActionBar
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.itis.homework3.databinding.FragmentDescriptionBinding
 
 class DescriptionFragment : Fragment(R.layout.fragment_description) {
@@ -14,6 +16,20 @@ class DescriptionFragment : Fragment(R.layout.fragment_description) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentDescriptionBinding.bind(view)
+
+
+        var cityId = arguments?.getInt("ID").toString().toInt()
+        var city = CityRepository.list[cityId - 1]
+        binding?.run {
+            tvTitle.text = city.name
+            tvCountry.text = city.country
+            tvDescription.text = city.description
+            Glide.with(view).load(city.url).into(ivImage)
+
+            goBack.setOnClickListener {
+                findNavController().navigate(R.id.action_descriptionFragment_to_listFragment)
+            }
+        }
     }
 
 

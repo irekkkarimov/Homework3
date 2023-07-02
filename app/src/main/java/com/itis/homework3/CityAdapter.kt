@@ -8,7 +8,8 @@ import com.itis.homework3.databinding.ItemCityBinding
 
 class CityAdapter(
     private var list: List<City>,
-    private val glide: RequestManager
+    private val glide: RequestManager,
+    private val onItemClick: (City) -> Unit
 ) : RecyclerView.Adapter<CityItem>() {
 
     override fun onCreateViewHolder(
@@ -20,7 +21,8 @@ class CityAdapter(
             parent,
             false
         ),
-        glide = glide
+        glide = glide,
+        onItemClick = onItemClick
     )
 
     override fun onBindViewHolder(holder: CityItem, position: Int) {

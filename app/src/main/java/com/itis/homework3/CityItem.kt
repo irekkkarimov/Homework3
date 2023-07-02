@@ -10,7 +10,8 @@ import com.itis.homework3.databinding.ItemCityBinding
 
 class CityItem (
     private val binding : ItemCityBinding,
-    private val glide: RequestManager
+    private val glide: RequestManager,
+    private val onItemClick: (City) -> Unit
     ) : ViewHolder(binding.root) {
 
     private val options: RequestOptions = RequestOptions
@@ -21,7 +22,7 @@ class CityItem (
     fun onBind(city: City) {
         binding.run {
             tvTitle.text = city.name
-            tvDescription.text = city.country
+            tvCountry.text = city.country
 
             glide
                 .load(city.url)
@@ -29,6 +30,10 @@ class CityItem (
                 .error(R.drawable.ic_launcher_foreground)
                 .apply(options)
                 .into(ivImage)
+
+            root.setOnClickListener {
+                onItemClick(city)
+            }
         }
     }
 }
